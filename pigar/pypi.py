@@ -7,9 +7,11 @@ import collections
 try:  # py2
     from urllib2 import urlopen, Request
     from HTMLParser import HTMLParser
+    from urlparse import urljoin
 except ImportError:  # py3
     from urllib.request import urlopen, Request
     from html.parser import HTMLParser
+    from urllib.parse import urljoin
 
 
 from .db import database
@@ -19,10 +21,9 @@ from .utils import Color, compare_version, cmp_to_key
 from .extractor import Extractor
 
 
-PYPI_URL = 'https://pypi.python.org/'
-PKG_URL = 'https://pypi.python.org/pypi/{0}'
-PKGS_URL = 'https://pypi.python.org/simple/'
-PKG_INFO_URL = 'https://pypi.python.org/pypi/{0}/json'
+PYPI_URL = 'https://pypi.org/'  # OLD ONE: 'https://pypi.python.org/'
+PKGS_URL = urljoin(PYPI_URL, '/simple/')
+PKG_INFO_URL = urljoin(PYPI_URL, '/pypi/{}/json')
 ACCEPTABLE_EXT = ('.whl', '.egg', '.tar.gz', '.tar.bz2', '.zip')
 
 
